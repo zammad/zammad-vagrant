@@ -12,6 +12,6 @@ You're going to love Zammad!
 Getting Started with Vagrant
 ----------------------------
 
-See the docs @ https://docs.zammad.org/en/latest/install-vagrant.html
+See the docs @ https://docs.zammad.org/en/latest/contributing-install-vagrant.html
 
 

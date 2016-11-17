@@ -5,7 +5,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.box = 'centos/7'
 
-  config.vm.network 'forwarded_port', guest: 80, host: 3001, protocol: 'tcp'
+  config.vm.network 'forwarded_port', guest: 80, host: 80, protocol: 'tcp'
 
   config.vm.provider :virtualbox do |vb|
     vb.name   = 'Zammad'
@@ -20,10 +20,6 @@ Vagrant.configure(2) do |config|
   config.vm.provision 'file',
     source:      'repos/zammad.repo',
     destination: '/tmp/zammad.repo'
-
-  config.vm.provision 'file',
-    source:      'repos/nginx.repo',
-    destination: '/tmp/nginx.repo'
 
   config.vm.provision 'file',
     source:      'scripts/zammad.sh',
