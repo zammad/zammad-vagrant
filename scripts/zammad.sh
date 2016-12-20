@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cp /tmp/zammad_env.sh $HOME
 chmod 755 $HOME/zammad_env.sh
 

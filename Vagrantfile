@@ -18,10 +18,6 @@ Vagrant.configure(2) do |config|
     destination: '/tmp/elasticsearch.repo'
 
   config.vm.provision 'file',
-    source:      'repos/zammad.repo',
-    destination: '/tmp/zammad.repo'
-
-  config.vm.provision 'file',
     source:      'scripts/zammad.sh',
     destination: '/tmp/zammad.sh'
 
@@ -30,5 +26,6 @@ Vagrant.configure(2) do |config|
     destination: '/tmp/zammad_env.sh'
 
   config.vm.provision 'shell',
-    path: 'scripts/init.sh'
+    path: 'scripts/init.sh', args: ENV['PACKAGER_REPO']
+
 end
