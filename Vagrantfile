@@ -14,10 +14,6 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provision 'file',
-    source:      'repos/elasticsearch.repo',
-    destination: '/tmp/elasticsearch.repo'
-
-  config.vm.provision 'file',
     source:      'scripts/zammad.sh',
     destination: '/tmp/zammad.sh'
 
