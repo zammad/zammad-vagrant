@@ -41,19 +41,12 @@ systemctl enable elasticsearch.service
 systemctl start postfix.service
 systemctl enable postfix.service
 
-chown -R zammad:zammad /opt/zammad
-chmod 755 /tmp/zammad.sh
-chown zammad:zammad /tmp/zammad.sh
-su - zammad -c '/tmp/zammad.sh'
+zammad scale web=1 websocket=1 worker=1
+systemctl enable zammad
+systemctl start zammad
 
-# scheduler
-zammad run worker &>> /opt/zammad/log/zammad.log &
-
-# websockets
-zammad run websocket &>> /opt/zammad/log/zammad.log &
-
-# web
-zammad run web &>> /opt/zammad/log/zammad.log &
+zammad run rails r "Setting.set('es_url', 'http://127.0.0.1:9200')"
+zammad run rake searchindex:rebuild
 
 systemctl start nginx.service
 systemctl enable nginx.service
