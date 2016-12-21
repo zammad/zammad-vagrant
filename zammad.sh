@@ -48,5 +48,6 @@ systemctl start zammad
 zammad run rails r "Setting.set('es_url', 'http://127.0.0.1:9200')"
 zammad run rake searchindex:rebuild
 
+setsebool httpd_can_network_connect on -P
 systemctl start nginx.service
 systemctl enable nginx.service
