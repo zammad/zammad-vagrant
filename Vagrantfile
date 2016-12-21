@@ -14,6 +14,6 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provision 'shell',
-    path: 'zammad.sh', args: ENV['PACKAGER_REPO']
+    path: '.provision/bootstrap.sh', args: ENV['PACKAGER_REPO']
 
 end
