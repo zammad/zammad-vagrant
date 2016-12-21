@@ -13,15 +13,7 @@ Vagrant.configure(2) do |config|
     vb.cpus   = 2
   end
 
-  config.vm.provision 'file',
-    source:      'scripts/zammad.sh',
-    destination: '/tmp/zammad.sh'
-
-  config.vm.provision 'file',
-    source:      'scripts/zammad_env.sh',
-    destination: '/tmp/zammad_env.sh'
-
   config.vm.provision 'shell',
-    path: 'scripts/init.sh', args: ENV['PACKAGER_REPO']
+    path: 'zammad.sh', args: ENV['PACKAGER_REPO']
 
 end
