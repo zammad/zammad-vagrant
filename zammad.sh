@@ -27,7 +27,7 @@ yum -y install epel-release
 yum -y install mc postfix elasticsearch java cronie zammad
 
 sysctl -w vm.max_map_count=262144
-yes | /usr/share/elasticsearch/bin/elasticsearch-plugin install ingest-attachment
+yes | /usr/share/elasticsearch/bin/elasticsearch-plugin install mapper-attachments
 
 echo 'max_connections = 200' >> /var/lib/pgsql/data/postgresql.conf
 echo 'shared_buffers = 2GB' >> /var/lib/pgsql/data/postgresql.conf
