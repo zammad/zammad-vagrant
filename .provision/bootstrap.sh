@@ -7,9 +7,12 @@ else
 fi
 
 echo "[zammad]
-name=Repository for zammad/zammad application.
-baseurl=https://rpm.packager.io/gh/zammad/zammad/centos7/${PACKAGER_REPO}
-enabled=1" | tee /etc/yum.repos.d/zammad.repo
+name=Repository for zammad/zammad (stable) packages.
+baseurl=https://dl.packager.io/srv/rpm/zammad/zammad/${PACKAGER_REPO}/el/7/$basearch
+enabled=1
+gpgcheck=0
+repo_gpgcheck=1
+gpgkey=https://dl.packager.io/srv/zammad/zammad/key" tee /etc/yum.repos.d/zammad.repo
 
 echo "[elasticsearch-5.x]
 name=Elasticsearch repository for 5.x packages
