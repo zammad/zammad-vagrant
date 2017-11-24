@@ -6,14 +6,6 @@ else
     PACKAGER_REPO="$1"
 fi
 
-echo "[zammad]
-name=Repository for zammad/zammad (stable) packages.
-baseurl=https://dl.packager.io/srv/rpm/zammad/zammad/${PACKAGER_REPO}/el/7/$basearch
-enabled=1
-gpgcheck=0
-repo_gpgcheck=1
-gpgkey=https://dl.packager.io/srv/zammad/zammad/key" tee /etc/yum.repos.d/zammad.repo
-
 echo "[elasticsearch-5.x]
 name=Elasticsearch repository for 5.x packages
 baseurl=https://artifacts.elastic.co/packages/5.x/yum
@@ -24,9 +16,11 @@ autorefresh=1
 type=rpm-md" | tee /etc/yum.repos.d/elasticsearch.repo
 
 rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
-rpm --import https://rpm.packager.io/key
+rpm --import https://dl.packager.io/srv/zammad/zammad/key
 
-yum -y install epel-release
+yum -y install epel-release wget
+wget -O /etc/yum.repos.d/zammad.repo https://dl.packager.io/srv/zammad/zammad/${PACKAGER_REPO}/installer/el/7.repo
+yum repolist && yum clean all
 yum -y install mc postfix elasticsearch java cronie zammad
 
 sysctl -w vm.max_map_count=262144
